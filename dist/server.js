@@ -68,6 +68,7 @@ wsServer.on('request', function (request) {
             switch (_c.label) {
                 case 0:
                     _c.trys.push([0, 5, , 6]);
+                    console.log(clients);
                     _a = [];
                     for (_b in clients)
                         _a.push(_b);
