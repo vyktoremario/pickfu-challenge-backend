@@ -11,6 +11,5 @@ export const getAllAnswers = catchAsync(async (req: Request | any, res: Response
     length: answers.length,
     data: answers,
   });
-  res.send("Hello, I am working")
 });
 
