@@ -2,7 +2,7 @@ import app from './app';
 const debug = require('debug')('pickfu-challenge:server');
 import webSocket from 'websocket';
 import Answer from './models/answerSchema';
-import { getUniqueId } from './utils/getUniqueId';
+// import { getUniqueId } from './utils/getUniqueId';
 const http = require('http');
 const mongoose = require('mongoose');
 
@@ -26,13 +26,12 @@ const wsServer = new webSocketServer ({
 
 
 wsServer.on('request', (request) => {
-  const uniqueID = getUniqueId();
+  // const uniqueID = getUniqueId();
   const connection = request.accept(undefined, request.origin);
 
-  clients[uniqueID] = connection;
+  clients[request.key] = connection;
   connection.on('message', async (message: any) => {
     try {
-      console.log(clients);
     for (const key in clients) {
         const answer = await Answer.create(JSON.parse(message.utf8Data));
         clients[key].sendUTF(JSON.stringify(answer));

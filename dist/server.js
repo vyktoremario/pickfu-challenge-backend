@@ -43,7 +43,7 @@ var app_1 = __importDefault(require("./app"));
 var debug = require('debug')('pickfu-challenge:server');
 var websocket_1 = __importDefault(require("websocket"));
 var answerSchema_1 = __importDefault(require("./models/answerSchema"));
-var getUniqueId_1 = require("./utils/getUniqueId");
+// import { getUniqueId } from './utils/getUniqueId';
 var http = require('http');
 var mongoose = require('mongoose');
 var webSocketServer = websocket_1.default.server;
@@ -59,16 +59,15 @@ var wsServer = new webSocketServer({
     httpServer: server
 });
 wsServer.on('request', function (request) {
-    var uniqueID = (0, getUniqueId_1.getUniqueId)();
+    // const uniqueID = getUniqueId();
     var connection = request.accept(undefined, request.origin);
-    clients[uniqueID] = connection;
+    clients[request.key] = connection;
     connection.on('message', function (message) { return __awaiter(void 0, void 0, void 0, function () {
         var _a, _b, _i, key, answer, error_1;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
                     _c.trys.push([0, 5, , 6]);
-                    console.log(clients);
                     _a = [];
                     for (_b in clients)
                         _a.push(_b);
