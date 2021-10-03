@@ -27,7 +27,7 @@ const wsServer = new webSocketServer ({
 
 wsServer.on('request', (request) => {
   const uniqueID = getUniqueId();
-  const connection = request.accept(undefined, request.origin)
+  const connection = request.accept(undefined, request.origin);
 
   clients[uniqueID] = connection;
   connection.on('message', async (message: any) => {

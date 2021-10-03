@@ -55,6 +55,7 @@ exports.getAllAnswers = (0, catchAsync_1.default)(function (req, res, next) { re
                     length: answers.length,
                     data: answers,
                 });
+                res.send("Hello, I am working");
                 return [2 /*return*/];
         }
     });
