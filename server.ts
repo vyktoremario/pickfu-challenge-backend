@@ -32,6 +32,7 @@ wsServer.on('request', (request) => {
   clients[uniqueID] = connection;
   connection.on('message', async (message: any) => {
     try {
+      console.log(clients);
     for (const key in clients) {
         const answer = await Answer.create(JSON.parse(message.utf8Data));
         clients[key].sendUTF(JSON.stringify(answer));
